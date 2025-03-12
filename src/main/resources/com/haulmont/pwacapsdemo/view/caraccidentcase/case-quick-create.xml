@@ -11,6 +11,7 @@
         <formLayout id="form" dataContainer="carAccidentCaseDc">
             <textField property="latitude" readOnly="true"/>
             <textField property="longitude" readOnly="true"/>
+            <dateTimePicker property="accidentDate" readOnly="true"/>
             <textArea property="description"/>
         </formLayout>
 

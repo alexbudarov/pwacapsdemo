@@ -6,6 +6,7 @@ import com.haulmont.pwacapsdemo.entity.CarAccidentCase;
 import com.haulmont.pwacapsdemo.view.main.MainView;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.router.Route;
+import io.jmix.core.TimeSource;
 import io.jmix.flowui.kit.component.button.JmixButton;
 import io.jmix.flowui.model.DataContext;
 import io.jmix.flowui.model.InstanceContainer;
@@ -23,6 +24,8 @@ public class CaseQuickCreateView extends StandardView {
     private InstanceContainer<CarAccidentCase> carAccidentCaseDc;
     @ViewComponent
     private DataContext dataContext;
+    @Autowired
+    private TimeSource timeSource;
 
     @Subscribe(id = "cancelBtn", subject = "singleClickListener")
     public void onCancelBtnClick(final ClickEvent<JmixButton> event) {
@@ -34,6 +37,7 @@ public class CaseQuickCreateView extends StandardView {
         geoLocationAccess.injectDependencies();
 
         CarAccidentCase item = dataContext.create(CarAccidentCase.class);
+        item.setAccidentDate(timeSource.now().toOffsetDateTime());
         carAccidentCaseDc.setItem(item);
     }
 
