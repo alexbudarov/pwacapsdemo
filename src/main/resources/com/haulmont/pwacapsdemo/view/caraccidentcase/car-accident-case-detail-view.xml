@@ -27,6 +27,7 @@
             <textField id="latitudeField" property="latitude"/>
             <textField id="longitudeField" property="longitude"/>
             <fileStorageUploadField id="photoField" clearButtonVisible="true" fileNameVisible="true" property="photo"
+                                    maxFileSize="20000000"
                                     acceptedFileTypes="image/png,image/jpeg"/>
         </formLayout>
         <hbox id="detailActions">
