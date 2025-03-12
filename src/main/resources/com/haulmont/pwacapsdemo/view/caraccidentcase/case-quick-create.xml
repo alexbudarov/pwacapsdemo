@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view xmlns="http://jmix.io/schema/flowui/view"
       title="msg://caseQuickCreateView.title">
+    <data>
+        <instance id="carAccidentCaseDc"
+                  class="com.haulmont.pwacapsdemo.entity.CarAccidentCase">
+            <fetchPlan extends="_base"/>
+        </instance>
+    </data>
     <layout>
+        <formLayout id="form" dataContainer="carAccidentCaseDc">
+            <textField property="latitude" readOnly="true"/>
+            <textField property="longitude" readOnly="true"/>
+            <textArea property="description"/>
+        </formLayout>
+
         <button id="cancelBtn" text="msg://quickCreate.cancel"/>
     </layout>
 </view>
