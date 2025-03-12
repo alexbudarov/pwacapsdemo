@@ -21,7 +21,6 @@ function geolocationInaccessible(message, element){
 
 /* This function is called from view controllers */
 function requestGeoLocation(element){
-    console.log(element);
     if (navigator.geolocation){
         navigator.geolocation.getCurrentPosition(
             function(position) { updateCoordinates(position, element) },

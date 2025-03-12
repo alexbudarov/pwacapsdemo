@@ -15,6 +15,13 @@
             <textArea property="description"/>
         </formLayout>
 
+        <div id="videoContainer">
+            <h3 text="msg://videoHeader"/>
+            <checkbox id="frontCamera" label="msg://useFrontCamera"/>
+            <span id="cameraCheckStatus" classNames="text-error" visible="false"/>
+            <button id="stopCameraBtn" text="msg://stopVideo"/>
+        </div>
+
         <button id="cancelBtn" text="msg://quickCreate.cancel"/>
     </layout>
 </view>
