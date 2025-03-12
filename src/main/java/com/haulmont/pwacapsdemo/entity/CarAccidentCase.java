@@ -4,6 +4,7 @@ import io.jmix.core.FileRef;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
+import io.jmix.core.metamodel.annotation.NumberFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -33,9 +34,11 @@ public class CarAccidentCase {
     @Column(name = "PHOTO", nullable = false, length = 1024)
     private FileRef photo;
 
+    @NumberFormat(pattern = "#.00000")
     @Column(name = "LATITUDE")
     private Double latitude;
 
+    @NumberFormat(pattern = "#.00000")
     @Column(name = "LONGITUDE")
     private Double longitude;
 
