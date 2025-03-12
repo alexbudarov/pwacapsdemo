@@ -32,6 +32,7 @@
         </genericFilter>
         <hbox id="buttonsPanel" classNames="buttons-panel">
             <button id="createButton" action="carAccidentCasesDataGrid.createAction"/>
+            <button id="quickCreateButton" action="carAccidentCasesDataGrid.quickCreate"/>
             <button id="editButton" action="carAccidentCasesDataGrid.editAction"/>
             <button id="removeButton" action="carAccidentCasesDataGrid.removeAction"/>
             <simplePagination id="pagination" dataLoader="carAccidentCasesDl"/>
@@ -43,6 +44,7 @@
                   columnReorderingAllowed="true">
             <actions>
                 <action id="createAction" type="list_create"/>
+                <action id="quickCreate" text="msg://quickCreate"/>
                 <action id="editAction" type="list_edit"/>
                 <action id="removeAction" type="list_remove"/>
             </actions>
