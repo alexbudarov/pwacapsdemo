@@ -26,7 +26,8 @@
             <dateTimePicker id="accidentDateField" property="accidentDate"/>
             <textField id="latitudeField" property="latitude"/>
             <textField id="longitudeField" property="longitude"/>
-            <fileStorageUploadField id="photoField" clearButtonVisible="true" fileNameVisible="true" property="photo"/>
+            <fileStorageUploadField id="photoField" clearButtonVisible="true" fileNameVisible="true" property="photo"
+                                    acceptedFileTypes="image/png,image/jpeg"/>
         </formLayout>
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveAction"/>
