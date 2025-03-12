@@ -3,6 +3,8 @@
 
     <menu id="application" title="msg://com.haulmont.pwacapsdemo/menu.application.title" opened="true">
         <item view="User.list" title="msg://com.haulmont.pwacapsdemo.view.user/UserListView.title"/>
+        <item view="CarAccidentCase.list"
+              title="msg://com.haulmont.pwacapsdemo.view.caraccidentcase/carAccidentCaseListView.title"/>
     </menu>
 
 </menu-config>

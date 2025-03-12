@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://carAccidentCaseDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="carAccidentCaseDc"
+                  class="com.haulmont.pwacapsdemo.entity.CarAccidentCase">
+            <fetchPlan extends="_base"/>
+            <loader id="carAccidentCaseDl"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <formLayout id="form" dataContainer="carAccidentCaseDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
+            <textArea id="descriptionField" height="9.5em" property="description"/>
+            <dateTimePicker id="accidentDateField" property="accidentDate"/>
+            <textField id="latitudeField" property="latitude"/>
+            <textField id="longitudeField" property="longitude"/>
+            <fileStorageUploadField id="photoField" clearButtonVisible="true" fileNameVisible="true" property="photo"/>
+        </formLayout>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>
