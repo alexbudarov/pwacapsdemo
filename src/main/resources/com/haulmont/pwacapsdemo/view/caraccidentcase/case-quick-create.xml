@@ -16,12 +16,14 @@
         </formLayout>
 
         <div id="videoContainer">
-            <h3 text="msg://videoHeader"/>
+            <h4 text="msg://videoHeader"/>
             <checkbox id="frontCamera" label="msg://useFrontCamera"/>
             <span id="cameraCheckStatus" classNames="text-error" visible="false"/>
             <button id="stopCameraBtn" text="msg://stopVideo"/>
+            <button id="uploadPhotoShot" text="msg://uploadPhotoShot"/>
         </div>
 
+        <button id="createBtn" text="msg://quickCreate.create" themeNames="primary"/>
         <button id="cancelBtn" text="msg://quickCreate.cancel"/>
     </layout>
 </view>
