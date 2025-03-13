@@ -5,6 +5,8 @@
         <item view="User.list" title="msg://com.haulmont.pwacapsdemo.view.user/UserListView.title"/>
         <item view="CarAccidentCase.list"
               title="msg://com.haulmont.pwacapsdemo.view.caraccidentcase/carAccidentCaseListView.title"/>
+        <item view="LocationWatcherView"
+              title="msg://com.haulmont.pwacapsdemo.view.locationwatcher/locationWatcher.title"/>
     </menu>
 
 </menu-config>

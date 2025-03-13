@@ -7,6 +7,7 @@ import io.jmix.flowui.Notifications;
 import io.jmix.flowui.view.View;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
 import java.util.function.Consumer;
 
 /**
@@ -47,5 +48,47 @@ public class GeoLocationAccess {
 
         // see https://vaadin.com/docs/v14/flow/element-api/client-server-rpc#executejs-method
         view.getElement().executeJs("requestGeoLocation($0)", view.getElement());
+    }
+
+    /**
+     * Register watcher to obtain new position each time when it changes.
+     * See: https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/watchPosition
+     *
+     * @param view target view
+     * @param locationConsumer consumer of timestamped coordinates
+     */
+    public void watchGeoLocationChanges(View view, Consumer<TimedCoordinates> locationConsumer) {
+        view.getElement().addEventListener("geo-location-obtained", e -> {
+                    double lat = e.getEventData().getNumber("event.lat");
+                    double lon = e.getEventData().getNumber("event.lon");
+                    long timestampMillis = (long) e.getEventData().getNumber("event.timestamp");
+                    Instant ts = Instant.ofEpochMilli(timestampMillis);
+
+                    locationConsumer.accept(new TimedCoordinates(lat, lon, ts));
+                })
+                .addEventData("event.lat")
+                .addEventData("event.lon")
+                .addEventData("event.timestamp");
+
+        view.getElement().addEventListener("geo-location-inaccessible", e -> {
+                    String message = e.getEventData().getString("event.message");
+                    notifications.create(message)
+                            .withType(Notifications.Type.WARNING)
+                            .show();
+                })
+                .addEventData("event.message");
+
+
+        // see https://vaadin.com/docs/v14/flow/element-api/client-server-rpc#executejs-method
+        view.getElement().executeJs("watchGeolocationChanges($0)", view.getElement());
+    }
+
+    /**
+     * Stop geolocation watcher if it was registered previously.
+     * See https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/clearWatch
+     */
+    public void stopWatchGeoLocationChanges() {
+        Page page = UI.getCurrent().getPage();
+        page.executeJs("stopWatchGeolocationChanges()");
     }
 }

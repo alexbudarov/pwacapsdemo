@@ -1,3 +1,6 @@
+
+var geolocationWatcherHandler;
+
 function updateCoordinates(position, element){
     // These are the coordinates returned by the Geolocation API
     let latitude = position.coords.latitude;
@@ -30,4 +33,38 @@ function requestGeoLocation(element){
     else {
         geolocationInaccessible("Your browser does not support the Geolocation feature", element)
     }
+}
+
+/* This function is called from view controllers */
+function watchGeolocationChanges(element) {
+    if (navigator.geolocation){
+      console.log("Start watching geolocation");
+      geolocationWatcherHandler = navigator.geolocation.watchPosition(
+          function(position) {
+             const event = new Event("geo-location-obtained");
+             event.lat = position.coords.latitude;
+             event.lon = position.coords.longitude;
+             event.timestamp = position.timestamp; // Unix time in milliseconds
+             element.dispatchEvent(event);
+          },
+          function(error) {
+            geolocationInaccessible(error.message, element)
+          },
+          {
+            enableHighAccuracy: true
+          }
+        );
+    }
+    else {
+        geolocationInaccessible("Your browser does not support the Geolocation feature", element)
+    }
+}
+
+/* This function is called from view controllers */
+function stopWatchGeolocationChanges() {
+  if (geolocationWatcherHandler) {
+    console.log("Stop watching geolocation");
+    navigator.geolocation.clearWatch(geolocationWatcherHandler);
+    geolocationWatcherHandler = null;
+  }
 }
