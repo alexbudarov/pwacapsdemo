@@ -21,7 +21,11 @@ import javax.sql.DataSource;
 
 @Push
 @Theme(value = "pwacapsdemo")
-@PWA(name = "Accident Cases Demo", shortName = "Accident Cases", backgroundColor = "#235FD5")
+@PWA(name = "Accident Cases Demo",
+        shortName = "Accidents",
+        backgroundColor = "#235FD5",
+        iconPath = "icons/icon-blue.png"
+)
 @SpringBootApplication
 public class PwacapsdemoApplication implements AppShellConfigurator {
 
