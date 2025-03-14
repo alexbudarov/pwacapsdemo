@@ -26,9 +26,11 @@
             <dateTimePicker id="accidentDateField" property="accidentDate"/>
             <textField id="latitudeField" property="latitude"/>
             <textField id="longitudeField" property="longitude"/>
+            <!-- trick to allow camera in Chrome. See https://stackoverflow.com/a/79163998/2032468 -->
             <fileStorageUploadField id="photoField" clearButtonVisible="true" fileNameVisible="true" property="photo"
                                     maxFileSize="20000000"
-                                    acceptedFileTypes="image/png,image/jpeg"/>
+                                    acceptedFileTypes="image/png,image/jpeg,android/force-camera-workaround"/>
+
         </formLayout>
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveAction"/>
