@@ -1,6 +1,10 @@
 package com.haulmont.pwacapsdemo.security;
 
+import io.jmix.core.JmixSecurityFilterChainOrder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
 /**
@@ -32,4 +36,11 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class PwacapsdemoSecurityConfiguration {
 
+    @Bean
+    @Order(JmixSecurityFilterChainOrder.CUSTOM)
+    public SecurityFilterChain actuatorSecurityFilterChain(HttpSecurity http) throws Exception {
+        return http.securityMatcher("/actuator/**")
+                .authorizeHttpRequests((authorize) -> authorize.anyRequest().permitAll())
+                .build();
+    }
 }
